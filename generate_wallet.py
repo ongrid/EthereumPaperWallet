@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 BLOCK_EXPLORER_URL = "https://etherscan.io/address/"
+TMP_FILENAME = "wallet.html"
 import webbrowser
 import os
 from jinja2 import Environment, FileSystemLoader
@@ -40,4 +41,6 @@ file_loader = FileSystemLoader('.')
 env = Environment(loader=file_loader)
 template = env.get_template('template.html')
 html = template.render(words=words, words_qr=words_qr, addr=addr, addr_qr=addr_qr, url=url, url_qr=url_qr, sk_hex=sk.hex(), sk_qr=sk_qr)
-webbrowser.open_new_tab("data:text/html;base64," + base64.b64encode(html.encode()).decode())
+with open(TMP_FILENAME,'w+') as file:
+    file.write(html)
+webbrowser.open_new_tab('file:///'+os.getcwd()+'/'+TMP_FILENAME)
