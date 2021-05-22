@@ -12,6 +12,7 @@ This script generates Ethereum private key and corresponding address in the foll
 ```sh
 python3 -m vernv venv
 source ./venv/bin/activate
+pip3 install -r requirements.txt
 python generate_wallet.py
 ```
 
